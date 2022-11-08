@@ -1,0 +1,392 @@
+# Terminal
+<triple click with mouse>               # Copy, can drag highlight down and will copy it
+<middle click with mouse>               # Paste contents
+
+# Shell scripting
+dirname /bin/bash                       # return "/bin"
+
+# sysctl
+sysctl -w net.ipv4.icmp_echo_ignore_all=0   # Enable (set to 1 to disable) icmp ping responses
+
+# systemctl
+systemctl list-units --type service     # list systemctl services
+
+# ssh
+<enter> ~ .                             # Sequence to escape a hung ssh session
+ssh-copy-id remote_username@server_ip_address      # Copy id to remote host
+ssh-copy-id -i <identity_file>  remote_username@server_ip_address    # Copy id to remote host, with a provided identity file
+ssh-copy-id -i <identity-file> -o ProxyJump=proxy@ip remote@ip      # Copy id for entire proxy path so that you can jump right to the remote ip
+ssh-keygen -t rsa -b 4096 -C "your_email@domain.com"    # Generate a new 4096 ssh keypair
+
+# adb
+adb logcat | grep <tag>                 # see adb logs when device connected for debugging. search for tag
+
+# hcitool
+hcitool dev                             # View hci devices, useful for finding bluetooth mac address
+
+# screen
+ctrl-a, k                               # kill screen
+
+# zip
+zip --encrypt directory.zip -r directory    # encrypt directory and name it directory.zip
+
+# Bash shell scripting
+myvar=$(<cmd>)                          # command substitution
+${<var>}                                # disambiguation of variable access
+$var                                    # refering/reading/access variable in bash
+$0                                      # name of bash script
+$1-$9                                   # the first 9 command line arguments to bash script
+$#                                      # The number of arguments passed to the bash script
+$@                                      # all the arguments supplied to the Bash script
+$?                                      # The exit status of the most recently run process
+$$                                      # The process ID of the current script
+$USER                                   # the username of the user running the script
+$HOSTNAME                               # The hostname of the machine the script is running on
+$SECONDS                                # num seconds since script was started
+$RANDOM                                 # returns a different random number each time 
+$LINENO                                 # returns the current line number in the script
+env                                     # listing of other variables that can be reffered to
+cd $(dirname "$BASH_SOURCE") && pwd -P  # absolute path of sourced script
+dirname /bin/bash                       # return "/bin"
+cd $(dirname $0) && pwd -P              # absolute path of executed bash script
+COMMAND <<< $WORD                       # $WORD is expanded and fed to stdin of command using here string
+--                                      # Signlas end of options and disables further option processing
+
+# netcat
+nc -l -p 1234 > out.file                # On the receiving end of a file transfer, start listening on port 1234
+nc <destination ip> 1234 < out.file     # On the sending end of a file transfer. Send to port 1234
+
+# Git
+git remote prune origin --dry-run       # list branches that can be deleted/ pruned
+git remote prune origin                 # delete branches that can be deleted/ pruned
+git branch -a                           # list branches
+git branch -m <new_name>                # Rename the local branch (Step 1/3 in renaming of branch)
+git push origin -u <new_name>           # Push the new name branch and reset the upstream branch (step 2/3)
+git push origin --delete <old_name>     # Delete the old name branch (step 3/3)
+git rebase <base>                       # Rebase in standard mode
+git rebase --interactive <base>         # Rebase in interactive mode
+git rebase -i $(git merge-base HEAD develop)    # Rebase branch going back to the common ancestor that would be used in a merge between HEAD and develop (useful for re-writing the git history for all commits that are in the current branch) (assumes HEAD is the branch you are working on)
+git push --force-with-lease             # forcefully push in git but stop if someone has updated the upstream branch (prevents overwriting changes pushed to the remote after the last fetch)
+git commit --amend                      # Add staged commits to the last commit
+git commit --amend --no-edit            # Add staged commits to the last commit but do not attempt to overwrite the commit
+git commit --amend --reset-author       # Reset the commit author and date to be you. Useful after rebasing
+gitk --all                              # Run gitk and show all branches
+git clone <repo> <directory>            # Clone a repository (<repo>) into a directory if directory provided. Else clone into a directory named the same as the repo
+git config --global submodule.recurse true  # update git submodules every time you pull
+git branch feature                      # Step 1: Move last git commit to a new branch
+git reset --hard HEAD~1                 # Step 2: Move last git commit to a new branch
+
+# Glow
+glow                                    # Open an interactive glow session to view markdown files
+glow <filename>                         # Render and print markdown file to console
+
+# curl
+curl -X <http method> <addr>            # Make an http method request to addr. Useful for using a POST or any non default (i.e. GET) method
+curl -i <addr>                          # -i flag tells curl to include the http response headers in the output. this will include the status code
+
+# iwconfig                              # Configure a wireless network interface
+iwconfig                                # list wireless interfaces
+iwconfig <iface> rts <threshold>        # Set an rts threshold on an interface
+iwconfig <iface> channel <num>          # Set a wireless interface to be on a certain channel
+
+# iwlist                                # Get more detailed wireless information from a wireless interface
+iwlist <iface> channel                  # Show the channels and frequencies available to a certain interface and what channel the iface is currently on
+
+# iw
+iw <interface> info                     # list information about a wireless interface
+iw dev <interface> del                  # delete a wireless interface
+iw <interface> info                     # show information (channel included) about interface
+
+# airmon-ng                             # Used to enable/ disbale monitor mode on wireless interfaces
+airmon-ng                               # Show monitor status
+airmon-ng check                         # Check for interfering processes  
+airmon-ng check kill                    # stops network managers then kills interfering processes left
+airmon-ng start <wireless interface>    # Enable monitor mode. Note, it is very important to kill the network managers before putting a card in monitor mode
+airmon-ng stop <wireless monitor iface> # Disable monitor mode. Will want to restart network manager after
+
+# NetworkManager                        # Ubuntu network manager software
+nmcli d                                 # show the status of devices known to NetworkManager
+nmcli d --help                          # show more information for this option
+nmcli c                                 # show the current status of each of NetworkManagers connections
+nmcli connections                       # Same as `c` option above, i.e. show status of each of Network Managers current connections
+nmcli r                                 # Show the state of radio interfaces
+nmcli monitor                           # Observe NetworkManager activity
+nmcli r wifi on                         # Make sure the wifi radio is on
+nmcli d wifi list                       # list the available wifi networks
+nmcli d wifi connect my_wifi password <password> # connect to an access point called my_wifi
+nmcli c add type wifi con-name <name> ifname wlan0 ssid <ssid> # Step 1 in connecting to a hidden network
+nmcli c modify <name> wifi-sec.key-mgmt wpa-psk wifi-sec.psk <password> # Step 2 in connecting to a hidden network
+nmcli c up <name>                       # Step 3 in connecting to a hidden network
+nmcli d wifi hotspot ifname <wifi_iface> ssid <ssid> password <password>    # Create a Wifi access point
+nmcli connection edit                   # Use the interactive console to edit connections
+service network-manager stop            # Stop network manager
+service network-manager start           # Start network manager
+
+# service
+service bluetooth stop                  # Stop bluetooth from running
+sudo /etc/init.d/bluetooth start        # Start bluetooth after stopping it
+
+# ip                                    # show/ manipulate routing, network devices, interfaces, and tunnels
+ip link help                            # Get a list of all link command options
+ip l show                               # l is same as link, show link layer info
+ip link show                            # See link layer information of all available devices
+ip link show dev <device>               # display link layer information for one specific device
+ip -s link                              # See the statistics for all network interfaces
+ip -s link ls <interface>               # See statistics for an individual network interface
+ip -s -s link ls <interface>            # See even more statistics for an individual network interface
+ip link ls up                           # See a list of only the running interfaces
+ip link set <interface> up              # Bring a network interface up (online)
+ip link set <interface> down            # Disable an interface (offline)
+ip link set txqueuelen <num> dev <iface># modify the transmit queue 
+ip link set mtu <num> dev <iface>       # set the MTU (maximum transmission unit)
+ip addr help                            # view all options for ip address commands
+ip addr                                 # display all devices
+ip a                                    # display all devices, a is same as addr
+ip addr show                            # list all network interfaces and the associated IP address
+ip addr show dev <interface>            # See information about an individual network
+ip -4 addr                              # list the ipv4 addresses
+ip -6 addr                              # list the ipv6 addresses
+ip addr add <ip_addr> dev <iface>       # add an ip address to an interface in linux
+ip addr add brd <ip_addr> dev <iface>   # add a broadcast address
+ip addr del <ip_addr> dev <iface>       # remove an ip address
+ip route help                           # see a full list of ip route commands
+ip route                                # list all rotue entries
+ip r                                    # same as ip route
+ip route list                           # list all route entries
+ip route list SELECTOR                  # narrow down ip route list results
+ip route list <ip_addr>                 # view routing for a distinct network
+ip route add <ip_addr> dev <iface>      # Add a new entry in the routing table
+ip route add <ip_addr> via <gatewayIP>  # add a new route via gateway
+ip route add default <ip_addr> dev <device> # add a rotue for all addresses via the local gateway by using the default option
+ip route add default <network/ mask> via <gatewayIP> # add a route for all addresses via the local gateway by using the default option
+ip route del <ip_addr>                  # delete an existing entry in the routing table
+ip route del default                    # delete the default route
+ip route del <ip_addr> dev <iface>      # delete an existing entry in the routing table
+ip neigh help                           # display full list of neighbor commands
+ip neigh show                           # display the neighbor (arp) table
+ip n show                               # same as neighbor or neigh
+ip neigh add <ip_addr> dev <iface>      # add a new table entry 
+ip neigh del <ip_addr> dev <iface>      # remove an existing arp entry
+
+# tcpdump                               dump traffic on a network
+tcpdump -i <iface>                      # list to all traffic on an interface. Supply `any` for all interfaces
+
+# Ghidra                                A software reverse engineering suite of tools developed by the NSA 
+ghidraRun                               # Start ghidra. This script is symlinked to /usr/local/bin
+<middle click>                          # Highlight references to the word you clicked on
+;                                       # Insert comment
+Ctrl-l                                  # Retype a variable
+
+# GDB                                   # gdb is the GNU debugger
+gdb-multiarch                           # GNU debugger with support for multiple architectures
+set architecture <arch>                 # set the target architecture in GDB
+target remote localhost:1234            # connect to a gdb debug server at ip localhost and port 1234
+display <Expression>                    # display an expression each time gdb stops at a breakpoint or after a step
+x                                       # Same as display
+x/<Format> <Expression>                 # display an expression in a specific format
+display/i <Expression>                  # display expression formatted as an instruction
+x/o <Expression>                        # display expression in octal format
+x/x <Expression>                        # display expression in hex format
+x/d <Expression>                        # display expression in decimal format
+x/u <Expression>                        # display expression in unsigned decimal format
+x/t <Expression>                        # display expression in binary format
+x/f <Expression>                        # display expression in floating point format
+x/a <Expression>                        # display expression in address format
+x/c <Expression>                        # display expression in char format
+x/s <Expression>                        # display expression in string format
+x/i <Expression>                        # display expression in instruction format
+break *<addr>                           # Break at an address (star is needed for breaking at address)
+p $ra                                   # print $ra register, can subsitute ra for any another register
+p/x $ra                                 # print as hex register $ra (or any register)
+stepi                                   # Execute one machine instruction and then stop
+si                                      # same as stepi. Often useful to use `x/i $pc` when using this
+disassem                                # Show a dump of the dissasembly
+disassem <addr>                         # Display memory as machine instructions
+p (char*)$<reg>                         # print contents of $<reg> as a char *
+c                                       # continue running your program
+handle <signal> <keywords>              # handle a <signal> (can be a number or name of signal) according to specified keywords
+handle <signal> nostop                  # gdb should not stop on signal. It may still print a message telling you it has come in
+handle <signal> stop                    # gdb should stop on the signal. This implies the print keyword as well
+handle <signal> print                   # gdb should print a message when this signal happens
+handle <signal> noprint                 # gdb should not mention the occurence of the signal at all. This implies the nostop keyword as well
+handle <signal> pass                    # gdb should allow your program to see this signal; your program can handle the signal, or else it may terminate if the signal is fatal and hot handled. Pass and noignore are the same
+handle <signal> noignore                # gdb should allow your program to see this signal; your program can handle the signal, or else it may terminate if the signal is fatal and hot handled. Pass and noignore are the same
+handle <signal> ignore                  # gdb should not allow your program to see the signal. Same as nopass
+handle <signal> nopass                  # gdb should not allow your program to see the signal. Same as ignore
+gdb -tui                                # Start gdb in text user interface mode
+tui enable                              # Turn on text user interface mode while in gdb
+set layout asm                          # show assembly in tui (text user interface) mode
+set layout reg                          # show registers in tui (text user interface) mode
+<Enter>                                 # perform last command entered in gdb
+
+# dmesg                                 # print or control the kernel ring buffer
+dmesg -w                                # Wait for new messages to be printed
+
+# grep                                  # searching utility
+grep -rl matchstring somedir/ | xargs sed -i 's/string1/string2/g'  # replace string1 with string 2 in files that contain matchstring, ideally string1 == matchstring
+grep -rl matchstring somedir/ | xargs sed -i '' -e 's/string1/string2/g'  # On OSX: replace string1 with string 2 in files that contain matchstring, ideally string1 == matchstring, see https://stackoverflow.com/questions/19456518/error-when-using-sed-with-find-command-on-os-x-invalid-command-code
+
+# sed
+sed -i 's/foo/bar/g' *                  # replace all occurences of foo with bar in current directory for all files that match pattern *
+
+# chown                                 # Change the owner of a file or directory
+chown $USER <file/ dir>                 # Change the user of <file/ dir> to the $USER
+
+# chgrp                                 # Change the group of the file or directory
+chgrp $USER <file/ dir>                 # Change the group of the <file/ dir> to the $USER
+
+# chmod                                 # Change file mode bits
+----------                              # Structure of file mode bits. Goes file type (1 bit: - for file, d for dir, l for link), owner, group, other (world). Order is type  read (r), write (w), execute (x)
+chmod 755 <directory>                   # Common directory chmod. Will yield rwxr-xr-x
+chmod 644 <file>                        # Common file chmod. Will yield rw-r--r--
+
+# shred                                 # overwrite a file to hide its contents, optionally delete it
+shred <file>                            # overwrite contents of <file>
+
+# tcpdump
+tcpdump -i <iface>                      # listen on a specific interface
+tcpdump -w <savefile.pcap>              # save results to a pcap file
+tcpdump <expression>                    # bpf filter to apply to capture
+
+# pgrep                                 # look up processes based on name and other attributes
+pgrep python                            # list pids for current python processes that are running
+
+# lspci                                 # list all PCI Devices
+lspci                                   # list all PCI Devices
+lspci | grep -i wireless                # search pci devices for wireless
+
+# Terminator
+Alt + L                                 # Open the layout launcher in terminator
+
+# Metasploit
+msfconsole                              # Start metasploit
+
+# Nmap
+nmap 192.168.0.1                        # Scan for open ports at the ip address 192.168.0.1, can switch ip address to meet needs
+nmap <ip addr> -p-                      # Scan the entire range of ports
+
+# Random (Catch All)
+/proc/sys/net/ipv4/icmp_echo_ignore_all # Path to if icmp should not respond to requests (1), 0 if should reply
+
+# Storybook
+docker-compose run --rm --no-deps client npm run storybook  # Start storybook
+
+# docker
+docker volume prune                     # prune dangling volumes
+
+# find
+find <path> -name <fileName>            # find where a file named fileName is located recursively within <path>
+
+# Vim
+:registers                              # Show the contents of all registers
+:reg                                    # Show the contents of all registers
+:reg a b                                # Show the contents of registers a and b
+"r                                      # Accesss register r
+"0p                                     # Paste the contents of the last yanked text. 0 can be substituted for any register
+"<X>p                                   # Paste the contents of register <X>
+"r<X>                                   # Perform <X> operation on register r
+Ctrl-r r                                # In INSERT mode, paste the text of the r buffer
+""                                      # default (unamed) register. Default for any text thats deleted or yanked. Used as default by :{d c s x p}
+".                                      # Read only register that stores the last inserted text
+"%                                      # Read only register that has the current file path starting from dir vim opened in
+":                                      # Read only register for the  most recently executed command
+"#                                      # Read only register for the name of the alternate file
+"+                                      # Clipboard register
+:let @+=@%                              # Copy the current filepath to the clipboard
+@:                                      # Execute the most recently executed command again
+"=                                      # Register used for the result of expressions 
+Ctrl-r =                                # in INSERT mode, used to evaluate expressions
+Ctrl-r = system('ls')                   # In INSERT mode, evaluate the system command ls
+"/                                      # Search register, last text searched for with /, ?, *, or # 
+/Ctrl-r /                               # Search for the last searched word/s
+"<m>                                    # Access the macro stored in register <m>
+q<letter><commands>q                    # Record a macro into <letter> register
+<number>@<letter>                       # Execute macro <letter> <number> of times
+@@                                      # Execute the last macro again
+:let @W='i;'                            # Append to w register (that is what the uppercase W does). In this ex. a ; is inserted
+:let @w='<Ctrl-r w><edits>'             # Edit the w register. Useful for editing macros
+@+                                      # Execute what is in the clipboard buffer as a macro
+"1 - "9                                 # Last deleted text
+*                                       # Search forward for next occurence of word under cursor
+#                                       # Search backwards for previous occurence of word under cursor
+.                                       # dot command. In normal mode repeats last native vim command executed. Does not repeat motion commands
+;                                       # Repeat the last f, t, F, or T command [count] times
+,                                       # Repeat the last f, t, F, or T command [count] times in the opposite direction
+:sort                                   # Sort the selected lines of text
+:sort i                                 # Sort the selected lines of text, ignore case
+:%sort!                                 # sort the selected lines of text in reverse
+:marks                                  # list all the current marks
+:marks aB                               # list marks a, B
+ma                                      # set the mark a at cursor location. Can be any lowercase letter to save within file
+mA                                      # Set a global mark. This gets saved in viminfo file and persists across files
+'a                                      # jump to the line of mark a (first non blank charachter in line)
+`a                                      # jump to the position (line and column) of mark a
+d'a                                     # delete from current cursor position to line of mark a
+d`a                                     # delete from current cursor position to position of mark a
+c'a                                     # change text from current line to line of mark a
+y`a                                     # yank text to unamed buffer from cursor position to position of mark a
+<command>'<mark>                        # commands with a ' operate linewise and include the start and end lines
+<command>`<mark>                        # commands with a ` operate charachterwise and include the start but not the end charachter
+]'                                      # jump to next line with a lowercase mark
+['                                      # jump to previous line with a lowercase mark
+]`                                      # jump to next lowercase mark
+[`                                      # jump to previous lowercase mark
+`.                                      # jump to position where last change occured in current buffer
+`"                                      # jump to position where last exited current buffer
+`0                                      # jump to position in last file edited (when exited vim)
+`1                                      # like `0 but the previous file (also `2, etc)
+''                                      # jump back (to line in current buffer where jumped from)
+``                                      # jump back (to position in current buffer where jumped from)
+`[ or `]                                # jump to beginning/end of previously changed or yanked text
+`< or `>                                # jump to beginnning/end of last visual selection
+:delmarks a                             # delete mark a
+:delmarks a-d                           # delete marks a, b, c, d
+:delmarks abxy                          # delete marks a, b, x, y 
+:delmarks aA                            # delete marks a, A
+:delmarks!                              # delete all lowercase marks for the current buffer
+:delm                                   # delete mark/s, sudodynm for :delmarks
+Ctrl-d                                  # Move half-page down
+Ctrl-u                                  # Move half-page up
+Ctrl-f                                  # Move page down
+Ctrl-b                                  # Move page up
+:tabf                                   # tab find. Search for a file and open in new tab
+:set colorcolumn=0                      # Turn off colorcolumn highlighting
+:set colorcolumn=                       # Turn off colorcolumn highlighting
+:set colorcolumn=80                     # set colorcolumn (visual line of column mark) at 80
+:set colorcolumn=80,120                 # set colorcolumn (visual line of column mark) at 80 and 120
+:set spell spelllang=en_us              # Turn on spell checking, with language set to United States english 
+:set spell                              # Turn on spell checking, using default language
+:set nospell                            # Turn off spell checking
+]s                                      # Move to next misspelled word
+[s                                      # Move to previous misspelled word
+z=                                      # Get suggestions for the misspelled word
+zg                                      # Mark a word as good spelling
+zG                                      # Mark a word as good spelling only in internal wordlist (cleared between vim reboots)
+zug                                     # Undo zg
+zw                                      # Mark a word as wrong (bad) spelling
+zW                                      # Mark a word as bad spelling only in internal wordlist (cleared between vim reboots)
+zuw                                     # Undo zw, remove entry from spellfile
+:set number                             # Turn on line numbers
+:set nu                                 # Turn on line numbers
+:set nonumber                           # Turn off line numbers
+:set nu!                                # Turn off line numbers
+:set relativenumber                     # Turn on relative line numbers
+:set rnu                                # Turn on relative line numbers
+:set norelativenumber                   # Turn off relative line numbers
+:set nornu                              # Turn off relative line numbers
+U                                       # Turn selected text to uppercase
+u                                       # Turn selected text to lowercase
+/\c<search word>                        # Case insensitive search (use the \c)
+:s/foo/bar/gc                           # Find each occurence of foo (in the current line) and replace it with bar
+:%s/foo/bar/g                           # Find each occurence of foo (in all lines) and replace it with bar
+:%s/foo/bar/gc                          # Find each occurence of foo (in all lines) and replace it with bar, ask confirmation first
+:%s/foo/bar/gci                         # Find each occurence of foo (in all lines) and replace it with bar, ignore case, ask confirmation first
+:%s/foo\c/bar/gc                        # Find each occurence of foo (in all lines) and replace it with bar, ignore case due to \c, ask confirmation first
+:%s/foo/bar/gcI                         # Find each occurence of foo (in all lines) and replace it with bar, case sensitive due to I, ask confirmation first
+Ctrl-a                                  # In normal mode, increment a number
+Ctrl-x                                  # In normal mode, decrement a number
+:w !sudo tee %                          # Save a file with sudo permissions 
+set list                                # Show whitespace as a character
+gn                                      # Go to and highlight the last word searched for
+cgn                                     # Go to and change the last word searched for
+:set ft?                                # Display the filetype vim has set for a particular file
