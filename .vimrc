@@ -138,6 +138,7 @@ colorscheme everforest
 " Use homebrew's clangd
 let g:ycm_clangd_binary_path = trim(system('brew --prefix llvm')).'/bin/clangd'
 " Don't display ycm errors
-" let g:ycm_show_diagnostics_ui = 0
+let g:ycm_show_diagnostics_ui = 0
 " Whitelist extra conf files
 let g:ycm_extra_conf_globlist = ['/Users/nathansilverman/pyka/software/repos/flight-controller/*']
+let g:ycm_auto_hover = ''
