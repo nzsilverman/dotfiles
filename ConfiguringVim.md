@@ -1,0 +1,27 @@
+# Configuring Vim
+This document contains instructions for configuring vim using the provided vimrc file.
+
+A version of vim with python compiled into it must be installed. 
+By default, MacOS does not ship with a version of vim that satisfies this requirement.
+This can easily be satisfied by installing via [Homebrew](https://brew.sh/) on a Mac.
+```
+brew install vim
+```
+
+Next, open a document in vim and install all the plugins via the command:
+```
+:PlugInstall
+```
+
+### Setup YCM Plugin on MacOS
+Generally, the [YouCompleteMe plugin documentation](https://github.com/ycm-core/YouCompleteMe#macos) can be followed. 
+The steps here are derived from that.
+
+```
+brew install cmake python go nodejs
+brew install java
+sudo ln -sfn $(brew --prefix java)/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+brew install llvm # Note, llvm must be added to the path. The zshrc file in this repo does that for you
+cd ~/.vim/plugged/YouCompleteMe
+python3 install.py --system-libclang --all
+```
