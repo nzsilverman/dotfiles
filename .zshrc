@@ -34,6 +34,7 @@ setopt inc_append_history
 export PATH="/usr/local/lib:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # Include configuration specific for this machine
 source ~/.zshrc_local
