@@ -8,6 +8,11 @@ prompt pure
 # Add aliases
 alias v="vim"
 alias refresh-zsh='source ~/.zshrc'
+alias gamend='git commit --amend --no-edit'
+alias gaddamend='git add . && git commit --amend --no-edit'
+alias gs='git status'
+alias gc='git commit'
+alias ga='git add'
 
 # Load Git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
