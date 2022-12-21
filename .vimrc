@@ -136,6 +136,8 @@ set background=dark
 let g:everforest_background = 'medium'
 " For better performance
 let g:everforest_better_performance = 1
+" Enable the foreground for spelling to be highlighted
+let g:everforest_spell_foreground='colored'
 colorscheme everforest
 
 " Setup and configure You Complete Me
