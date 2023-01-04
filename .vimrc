@@ -92,7 +92,7 @@ set hlsearch
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Automatically Remove trailing whitespace
-autocmd FileType c,cpp,python,qml,js autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,python,qml,js,json autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Set leader key to ,
 let mapleader=","
