@@ -1,4 +1,4 @@
-"------------------------------------------------------------ 
+"------------------------------------------------------------
 " PLUGINS (Using vim-plug, https://github.com/junegunn/vim-plug)
 " Keep this at the top of the vimrc to ensure loading before setting options
 "------------------------------------------------------------
@@ -30,7 +30,7 @@ Plug 'ycm-core/YouCompleteMe'
 
 call plug#end()
 
-"------------------------------------------------------------ 
+"------------------------------------------------------------
 " END PLUGINS
 "------------------------------------------------------------
 
@@ -54,10 +54,10 @@ set shiftwidth=2
 set tabstop=2
 
 "Auto indent
-set autoindent 
+set autoindent
 
 "Smart indent
-set smartindent 
+set smartindent
 
 " Allow filetype detection
 filetype on
@@ -92,20 +92,36 @@ set hlsearch
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Automatically Remove trailing whitespace
-autocmd FileType c,cpp,python,qml,js,json autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,python,qml,js,json,vim autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Set leader key to ,
 let mapleader=","
+
+function! UndoIfShellError()
+    if v:shell_error
+        undo
+    endif
+endfunction
 
 " Autoformat cpp files on save
 function FormatCppOnSave()
   "if !empty(findfile('.clang-format', expand('%:p:h') . ';')) " Uncomment if vim should only autoformat if a clang format file exists in this directory, or a parent directory
   let cursor_pos = getpos('.')
-  :%! clang-format 
+  :%! clang-format
+  call UndoIfShellError()
   call setpos('.', cursor_pos)
   "endif " Uncomment if needed
 endfunction
 autocmd FileType c,cpp,h autocmd BufWritePre <buffer> silent :call FormatCppOnSave() | redraw!
+
+" Autoformat python files on save using yapf
+function FormatPythonOnSave()
+  let cursor_pos = getpos('.')
+  :%! yapf
+  call UndoIfShellError()
+  call setpos('.', cursor_pos)
+endfunction
+autocmd FileType python autocmd BufWritePre <buffer> silent :call FormatPythonOnSave() | redraw!
 
 " Don't search for filenames in addition to content within files when using
 " :Rg search with fzf plugin
