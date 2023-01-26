@@ -225,6 +225,7 @@ dmesg -w                                # Wait for new messages to be printed
 # grep                                  # searching utility
 grep -rl matchstring somedir/ | xargs sed -i 's/string1/string2/g'  # replace string1 with string 2 in files that contain matchstring, ideally string1 == matchstring
 grep -rl matchstring somedir/ | xargs sed -i '' -e 's/string1/string2/g'  # On OSX: replace string1 with string 2 in files that contain matchstring, ideally string1 == matchstring, see https://stackoverflow.com/questions/19456518/error-when-using-sed-with-find-command-on-os-x-invalid-command-code
+rg -l matchstring somedir/ | xargs sed -i '' -e 's/string1/string2/g'  # On OSX: replace string1 with string 2 in files that contain matchstring, ideally string1 == matchstring, see https://stackoverflow.com/questions/19456518/error-when-using-sed-with-find-command-on-os-x-invalid-command-code. rg is often better at this than grep
 
 # sed
 sed -i 's/foo/bar/g' *                  # replace all occurences of foo with bar in current directory for all files that match pattern *
