@@ -60,6 +60,9 @@ set autoindent
 "Smart indent
 set smartindent
 
+" Show a visual marker that a line is too long
+set colorcolumn=80
+
 " Allow filetype detection
 filetype on
 filetype plugin on
@@ -93,7 +96,7 @@ set hlsearch
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Automatically Remove trailing whitespace
-autocmd FileType c,cpp,python,qml,js,json,vim,sh autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,python,qml,js,json,vim,sh,Jenkinsfile autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Set leader key to ,
 let mapleader=","
