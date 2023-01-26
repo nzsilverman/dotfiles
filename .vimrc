@@ -116,7 +116,7 @@ function FormatCppOnSave()
   call setpos('.', cursor_pos)
   "endif " Uncomment if needed
 endfunction
-autocmd FileType c,cpp,h autocmd BufWritePre <buffer> silent :call FormatCppOnSave() | redraw!
+autocmd FileType c,cpp,h autocmd BufWritePre <buffer> silent :call FormatCppOnSave()
 
 " Autoformat python files on save using yapf
 function FormatPythonOnSave()
@@ -125,7 +125,7 @@ function FormatPythonOnSave()
   call UndoIfShellError()
   call setpos('.', cursor_pos)
 endfunction
-autocmd FileType python autocmd BufWritePre <buffer> silent :call FormatPythonOnSave() | redraw!
+autocmd FileType python autocmd BufWritePre <buffer> silent :call FormatPythonOnSave()
 
 " Don't search for filenames in addition to content within files when using
 " :Rg search with fzf plugin
