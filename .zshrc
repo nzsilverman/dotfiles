@@ -3,7 +3,9 @@
 fpath+=($HOME/.zsh/pure)
 autoload -U promptinit; promptinit
 prompt pure
-
+zstyle :prompt:pure:prompt:success color '#5df542' 
+zstyle :prompt:pure:prompt:error color '#ff0000'
+zstyle :prompt:pure:path color '#c685ff' 
 
 # Add aliases
 alias v="vim"
