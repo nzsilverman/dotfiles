@@ -391,3 +391,5 @@ set list                                # Show whitespace as a character
 gn                                      # Go to and highlight the last word searched for
 cgn                                     # Go to and change the last word searched for
 :set ft?                                # Display the filetype vim has set for a particular file
+kJ                                      # Join the current line with the previous line
+
