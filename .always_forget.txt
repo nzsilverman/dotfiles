@@ -17,6 +17,7 @@ ssh-copy-id remote_username@server_ip_address                                   
 ssh-copy-id -i <identity_file>  remote_username@server_ip_address                                                                                                                   # Copy id to remote host, with a provided identity file
 ssh-copy-id -i <identity-file> -o ProxyJump=proxy@ip remote@ip                                                                                                                      # Copy id for entire proxy path so that you can jump right to the remote ip
 ssh-keygen -t rsa -b 4096 -C "your_email@domain.com"                                                                                                                                # Generate a new 4096 ssh keypair
+export DISPLAY=:0                                                                                                                                                                   # Use the local display, not the remote ssh display 
 
 # adb
 adb logcat | grep <tag>                                                                                                                                                             # see adb logs when device connected for debugging. search for tag
@@ -61,7 +62,13 @@ COMMAND <<< $WORD                                                               
 nc -l -p 1234 > out.file                                                                                                                                                            # On the receiving end of a file transfer, start listening on port 1234
 nc <destination ip> 1234 < out.file                                                                                                                                                 # On the sending end of a file transfer. Send to port 1234
 
-# Git
+# tmux
+ctrl+b "                                                                                                                                                                            # Split pane horizontally
+ctrl+b %                                                                                                                                                                            # Split pane vertically 
+ctrl+b x                                                                                                                                                                            # Close split pane 
+ 
+
+# git
 git remote prune origin --dry-run                                                                                                                                                   # list branches that can be deleted/ pruned
 git remote prune origin                                                                                                                                                             # delete branches that can be deleted/ pruned
 git branch -a                                                                                                                                                                       # list branches
@@ -283,6 +290,9 @@ docker volume prune                                                             
 # find
 find <path> -name <fileName>                                                                                                                                                        # find where a file named fileName is located recursively within <path>
 
+# dd
+dd if=/dev/zero of=fake_sd_card.img bs=1 count=0 seek=4G                                                                                                                            # Set up a fake sd card
+
 # Vim
 :registers                                                                                                                                                                          # Show the contents of all registers
 :reg                                                                                                                                                                                # Show the contents of all registers
@@ -397,3 +407,10 @@ gn                                                                              
 cgn                                                                                                                                                                                 # Go to and change the last word searched for
 :set ft?                                                                                                                                                                            # Display the filetype vim has set for a particular file
 kJ                                                                                                                                                                                  # Join the current line with the previous line
+ctrl+w v                                                                                                                                                                            # Vertical split vim window
+ctrl+w s                                                                                                                                                                            # Horizontal split vim window 
+:bd                                                                                                                                                                                 # Unload (close) a buffer. If it was changed, this fails unless a ! is provided 
+:ls                                                                                                                                                                                 # list currently open buffers 
+:mks <filepath>                                                                                                                                                                     # Save a vim session (all the buffers opened) to a filepath. It is customary to name filepath with a .vim extension
+:source ~/path/to/vim/session.vim                                                                                                                                                   # Open a saved vim session 
+vim -S ~/path/to/vim/session.vim                                                                                                                                                    # Open a saved vim session on startup 
