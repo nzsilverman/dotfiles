@@ -27,6 +27,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'sainnhe/everforest'
 Plug 'sheerun/vim-polyglot'
 Plug 'ycm-core/YouCompleteMe'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'powerline/powerline-fonts'
 
 call plug#end()
 
@@ -79,6 +82,9 @@ set clipboard^=unnamed
 
 " Show where you are in the document
 set ruler
+
+" Allow switching between buffers without them being saved to disk
+set hidden
 
 " Don't let vim popup extra menus, it is always confusing
 set completeopt=menu
@@ -144,6 +150,8 @@ nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h: :History:<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
+nmap <Leader>fw <Plug>(YCMFindSymbolInWorkspace)
+nmap <Leader>fd <Plug>(YCMFindSymbolInDocument)
 
 " Setup Colorscheme
 if has('termguicolors') " Important!!
@@ -182,3 +190,15 @@ augroup HighlightCppInHover
     \ 'syntax': &filetype
     \ }
 augroup END
+
+" Setup and configure vim airline
+"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_powerline_fonts = 1
+
+" Move to the next buffer
+nmap <leader>t :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>T :bprevious<CR>
