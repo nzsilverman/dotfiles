@@ -8,6 +8,9 @@ dirname /bin/bash                                                               
 # sysctl
 sysctl -w net.ipv4.icmp_echo_ignore_all=0                                                                                                                                           # Enable (set to 1 to disable) icmp ping responses
 
+# diff
+diff -rq dir1 dir2                                                                                                                                                                  # Check that two directories are the same
+
 # systemctl
 systemctl list-units --type service                                                                                                                                                 # list systemctl services
 
@@ -32,6 +35,8 @@ ctrl-a, k                                                                       
 socat 'PTY,link=/tmp/ttyFakeIn,raw,echo=0,iexten=0' 'PTY,link=/tmp/ttyFakeOut,raw,echo=0,iexten=0'                                                                                  # Setup a fake serial port that accepts connections on /tmp/ttyFakeIn and can be read on /tmp/ttyFakeOut. Be sure to read continously to avoid overflowing the buffer by running `tail /tmp/ttyFakeOut > /dev/null`
 socat - UNIX-CONNECT:/tmp/fakeSocket                                                                                                                                                # Connect to a unix socket (in this case /tmp/fakeSocket)
 
+# cpp                                                                                                                                                                               # cpp (C++) programming language tips/ tricks/ things I forget
+duplicate symbol error                                                                                                                                                              # If you have a function in a header file, you must mark it as "inline". Other things can also cause this error
 
 # zip
 zip --encrypt directory.zip -r directory                                                                                                                                            # encrypt directory and name it directory.zip
@@ -62,10 +67,17 @@ COMMAND <<< $WORD                                                               
 nc -l -p 1234 > out.file                                                                                                                                                            # On the receiving end of a file transfer, start listening on port 1234
 nc <destination ip> 1234 < out.file                                                                                                                                                 # On the sending end of a file transfer. Send to port 1234
 
+# ncdu
+ncdu                                                                                                                                                                                # Recursively (and interactively) view the size of files and directories on the disk. Shows storage space used
+
 # tmux
 ctrl+b "                                                                                                                                                                            # Split pane horizontally
 ctrl+b %                                                                                                                                                                            # Split pane vertically 
 ctrl+b x                                                                                                                                                                            # Close split pane 
+
+# miniterm
+ctrl-]                                                                                                                                                                              # Exit
+python3 -m serial.tools.miniterm --raw /dev/tty.usbserial-A107U3N3 115200                                                                                                           # Listen to a serial device. Change /dev/tty.usbserial-A107U3N3 to the correct device
  
 
 # git
@@ -87,6 +99,7 @@ git clone <repo> <directory>                                                    
 git config --global submodule.recurse true                                                                                                                                          # update git submodules every time you pull
 git branch feature                                                                                                                                                                  # Step 1: Move last git commit to a new branch
 git reset --hard HEAD~1                                                                                                                                                             # Step 2: Move last git commit to a new branch
+git submodule foreach --recursive git reset --hard                                                                                                                                  # Reset all submodules recursively
 
 # Glow (Markdown Viewer)
 glow                                                                                                                                                                                # Open an interactive glow session to view markdown files
@@ -289,9 +302,12 @@ docker volume prune                                                             
 
 # find
 find <path> -name <fileName>                                                                                                                                                        # find where a file named fileName is located recursively within <path>
+find . -type f -exec ls -t1 {} + |  head -1                                                                                                                                         # List the most recently changed file
+find . -type d -name "*build*" | grep -v "gui-tools" | grep -v "third_party" | grep -v "common/pyl/test" | xargs rm -rf                                                             # Remove all build folders in fc repo
 
 # dd
 dd if=/dev/zero of=fake_sd_card.img bs=1 count=0 seek=4G                                                                                                                            # Set up a fake sd card
+dd if=/dev/disk4 of=copied_sd.img conv=sparse count=<TODO>                                                                                                                          # Copy an sd card to a file. Provide a count of how many blocks have been used
 
 # Vim
 :registers                                                                                                                                                                          # Show the contents of all registers
@@ -414,3 +430,9 @@ ctrl+w s                                                                        
 :mks <filepath>                                                                                                                                                                     # Save a vim session (all the buffers opened) to a filepath. It is customary to name filepath with a .vim extension
 :source ~/path/to/vim/session.vim                                                                                                                                                   # Open a saved vim session 
 vim -S ~/path/to/vim/session.vim                                                                                                                                                    # Open a saved vim session on startup 
+ctrl+w T                                                                                                                                                                            # Move vim window to its own tab 
+ctrl+w =                                                                                                                                                                            # Recalculate vim window sizes 
+set filetype?                                                                                                                                                                       # Show the filetype of the current file in vim
+
+# rclone
+rclone dedupe "gdrive_nathan_logs:Flight logs" --dedupe-mode largest                                                                                                                                      # Deduplicate logs within the Flight logs folder, selecting the largest file when duplicates are found

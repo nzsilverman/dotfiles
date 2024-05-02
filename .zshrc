@@ -16,6 +16,11 @@ alias gs='git status'
 alias gc='git commit'
 alias ga='git add'
 alias gforce='git push --force-with-lease'
+alias grebase-master='git fetch origin master && git rebase'
+alias gsupdate='git submodule update --init --recursive'
+alias pactivate='source env/py*/bin/activate'
+alias grm-not-master='git checkout master | git branch | grep -v "master" | xargs git branch -D'
+alias grm-not-main='git checkout main | git branch | grep -v "main" | xargs git branch -D'
 
 # Load Git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
@@ -39,10 +44,16 @@ cd() {
 setopt inc_append_history
 
 # Modify Path
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="/usr/local/lib:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # Include configuration specific for this machine
 source ~/.zshrc_local
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/nathansilverman/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/nathansilverman/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/nathansilverman/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/nathansilverman/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

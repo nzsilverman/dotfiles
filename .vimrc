@@ -96,13 +96,17 @@ autocmd FileType gitcommit set colorcolumn=73
 " Show filename
 set laststatus=2
 
+" Split new windows to the right, or below by default
+set splitright
+set splitbelow
+
 " Turn on search highlighting
 set hlsearch
 " Press Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Automatically Remove trailing whitespace
-autocmd FileType c,cpp,python,qml,js,json,vim,sh,Jenkinsfile autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,python,qml,js,json,vim,sh,Jenkinsfile,lua,txt,prolog,markdown,cmake autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Set leader key to ,
 let mapleader=","
@@ -114,10 +118,12 @@ function! UndoIfShellError()
 endfunction
 
 " Autoformat cpp files on save
+" TODO this sometimes has issues when the file name is important for
+" formatting
 function FormatCppOnSave()
   "if !empty(findfile('.clang-format', expand('%:p:h') . ';')) " Uncomment if vim should only autoformat if a clang format file exists in this directory, or a parent directory
   let cursor_pos = getpos('.')
-  :%! clang-format
+  :%! /opt/homebrew/bin/clang-format --style='file'
   call UndoIfShellError()
   call setpos('.', cursor_pos)
   "endif " Uncomment if needed
@@ -150,8 +156,6 @@ nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h: :History:<CR>
 nnoremap <silent> <Leader>h/ :History/<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
-nmap <Leader>fw <Plug>(YCMFindSymbolInWorkspace)
-nmap <Leader>fd <Plug>(YCMFindSymbolInDocument)
 
 " Setup Colorscheme
 if has('termguicolors') " Important!!
@@ -177,12 +181,14 @@ let g:ycm_clangd_binary_path = trim(system('brew --prefix llvm')).'/bin/clangd'
 " properly for a specific repository
 let g:ycm_show_diagnostics_ui = 0
 " Whitelist extra conf files
-let g:ycm_extra_conf_globlist = ['/Users/nathansilverman/pyka/software/repos/flight-controller/*']
+" let g:ycm_extra_conf_globlist = ['/Users/nathansilverman/pyka/software/repos/*']
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 " Don't hover automatically, only when leader-d is pressed
 let g:ycm_auto_hover = ''
 nmap <leader>d <plug>(YCMHover)
+nmap <Leader>fw <Plug>(YCMFindSymbolInWorkspace)
+nmap <Leader>fd <Plug>(YCMFindSymbolInDocument)
 augroup HighlightCppInHover
   autocmd!
   autocmd FileType c,cpp let b:ycm_hover = {
@@ -202,3 +208,5 @@ nmap <leader>t :bnext<CR>
 
 " Move to the previous buffer
 nmap <leader>T :bprevious<CR>
+
+autocmd FileType c,cpp,java,Jenkinsfile set commentstring=//\ %s
