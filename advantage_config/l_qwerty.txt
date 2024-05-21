@@ -18,7 +18,7 @@
 [kp-caps]>[escape]
 [kp-lctrl]>[lwin]
 [kp-rwin]>[rctrl]
-[kp-rctrl]>[rwin]
+[kp-rctrl]>[lwin]
 [kp-home]>[lctrl]
 [kp-pup]>[lctrl]
 [kp-end]>[lalt]
