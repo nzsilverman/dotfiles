@@ -28,6 +28,7 @@ fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
 
 # fzf setup
+source <(fzf --zsh)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
