@@ -2,7 +2,11 @@
 [keybindings]
   split_horiz = <Primary><Shift>d
   split_vert = <Primary>d
-  close_term = <Primary>w
+  close_term = <Primary><Shift>w
+  move_tab_right = <Primary><Shift>Right
+  move_tab_left = <Primary><Shift>Left
+  next_tab = <Shift><Alt>Right
+  prev_tab = <Shift><Alt>Left
 [profiles]
   [[default]]
     background_color = "#002b36"
