@@ -21,6 +21,7 @@ alias gsupdate='git submodule update --init --recursive'
 alias pactivate='source env/py*/bin/activate'
 alias grm-not-master='git checkout master | git branch | grep -v "master" | xargs git branch -D'
 alias grm-not-main='git checkout main | git branch | grep -v "main" | xargs git branch -D'
+alias greset-origin='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
 
 # Load Git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
@@ -29,11 +30,6 @@ autoload -Uz compinit && compinit
 
 # fzf setup
 source <(fzf --zsh)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_DEFAULT_OPTS='-m --height 50% --border'
-fi
 
 # Prevent cd from going to home directory when it is supplied no arguments
 cd() {
