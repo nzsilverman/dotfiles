@@ -1,3 +1,6 @@
+# Include configuration specific for this machine
+source ~/.zshrc_local
+
 # Use 'pure' zsh theme
 # https://github.com/sindresorhus/pure
 fpath+=($HOME/.zsh/pure)
@@ -22,6 +25,7 @@ alias pactivate='source env/py*/bin/activate'
 alias grm-not-master='git checkout master | git branch | grep -v "master" | xargs git branch -D'
 alias grm-not-main='git checkout main | git branch | grep -v "main" | xargs git branch -D'
 alias greset-origin='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
+alias gupdate='git fetch && greset-origin && gsupdate && echo && gs'
 
 # Load Git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
@@ -39,7 +43,3 @@ cd() {
 
 # Save every command to history before executing 
 setopt inc_append_history
-
-
-# Include configuration specific for this machine
-source ~/.zshrc_local
