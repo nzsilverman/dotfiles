@@ -16,6 +16,13 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+
+" Configure packages before they are loaded
+" This is required for some packages
+"
+" Don't auto indent based on the filetype by default
+let g:polyglot_disabled = ["autoindent"]
+
 " Install plugins using vim-plug below
 
 Plug 'pangloss/vim-javascript'
