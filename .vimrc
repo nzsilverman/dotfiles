@@ -78,7 +78,7 @@ set mouse=a
 
 " Synchronize clipboard with vim register
 " This allows you to yank in vim and paste with the system keyboard
-set clipboard^=unnamed
+set clipboard=unnamedplus
 
 " Show where you are in the document
 set ruler
@@ -106,7 +106,7 @@ set hlsearch
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Automatically Remove trailing whitespace
-autocmd FileType c,cpp,python,qml,js,json,vim,sh,Jenkinsfile,lua,txt,prolog,markdown,cmake autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,python,qml,js,json,vim,sh,Jenkinsfile,lua,txt,prolog,markdown,cmake,dockerfile autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Set leader key to ,
 let mapleader=","
