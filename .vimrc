@@ -85,7 +85,11 @@ set mouse=a
 
 " Synchronize clipboard with vim register
 " This allows you to yank in vim and paste with the system keyboard
-set clipboard=unnamedplus
+if system('uname -s') == "Darwin\n"
+  set clipboard=unnamed "OSX
+else
+  set clipboard=unnamedplus "Linux
+endif
 
 " Show where you are in the document
 set ruler
