@@ -156,6 +156,8 @@ autocmd FileType python autocmd BufWritePre <buffer> silent :call FormatPythonOn
 
 " Show vim where fzf is installed
 set rtp+=/opt/homebrew/bin/fzf
+set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+
 
 " Open fzf plugin shortcuts
 nnoremap <silent> <C-p> :Files<CR>
