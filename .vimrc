@@ -134,7 +134,7 @@ endfunction
 function FormatCppOnSave()
   "if !empty(findfile('.clang-format', expand('%:p:h') . ';')) " Uncomment if vim should only autoformat if a clang format file exists in this directory, or a parent directory
   let cursor_pos = getpos('.')
-  :%! /opt/homebrew/bin/clang-format --style='file'
+  :%! clang-format-15 --style='file'
   call UndoIfShellError()
   call setpos('.', cursor_pos)
   "endif " Uncomment if needed
@@ -144,7 +144,7 @@ autocmd FileType c,cpp,h autocmd BufWritePre <buffer> silent :call FormatCppOnSa
 " Autoformat python files on save using yapf
 function FormatPythonOnSave()
   let cursor_pos = getpos('.')
-  :%! yapf
+  :%! yapf3
   call UndoIfShellError()
   call setpos('.', cursor_pos)
 endfunction
