@@ -1,9 +1,9 @@
 [global_config]
   suppress_multiple_term_dialog = True
 [keybindings]
-  split_horiz = <Shift><Super>d
-  split_vert = <Super>d
-  close_term = <Super>w
+  split_horiz = <Primary><Shift>d
+  split_vert = <Primary>d
+  close_term = <Primary>w
   move_tab_right = <Primary><Shift>Right
   move_tab_left = <Primary><Shift>Left
   next_tab = <Shift><Alt>Right
