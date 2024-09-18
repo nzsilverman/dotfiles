@@ -1,7 +1,5 @@
-[escape]>[caps]
 [=]>[\]
 [\]>[=]
-[caps]>[escape]
 [menu]>[null]
 [play]>[null]
 [prev]>[null]
