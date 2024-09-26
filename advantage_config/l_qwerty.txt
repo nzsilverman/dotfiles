@@ -5,4 +5,5 @@
 [prev]>[null]
 [next]>[prev]
 [calc]>[play]
+[kpshft]>[next]
 [rwin]>[lwin]
