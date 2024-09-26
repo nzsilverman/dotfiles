@@ -1,0 +1,4 @@
+" A double quote character starts a comment.
+
+" Press Space to turn off highlighting
+nnoremap <Space> :nohlsearch<CR>

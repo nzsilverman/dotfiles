@@ -1,0 +1,22 @@
+{
+	"font_size": 10,
+	// "ignored_packages": [
+	// ],
+	// "vintage_use_clipboard": true,
+	"trim_trailing_white_space_on_save": "all",
+	"ensure_newline_at_eof_on_save" : true,
+	"save_on_focus_lost": true,
+	"translate_tabs_to_spaces": true,
+	"tab_size": 2,
+	"index_files": true,
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"neovintageous_build_version": 13200,
+	"vintageous_use_sys_clipboard": true,
+	"vintageous_use_ctrl_keys" : false,
+	"vintageous_reset_mode_when_switching_tabs" : false,
+	"color_scheme": "Mariana.sublime-color-scheme",
+	"theme": "auto",
+}
