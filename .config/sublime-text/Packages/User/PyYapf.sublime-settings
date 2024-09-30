@@ -1,4 +1,4 @@
 {
- "on_save": true,
+ "on_save": false,
  "yapf_command": "yapf3",
 }
