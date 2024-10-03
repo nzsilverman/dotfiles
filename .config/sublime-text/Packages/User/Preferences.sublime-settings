@@ -19,4 +19,5 @@
 	"vintageous_reset_mode_when_switching_tabs" : false,
 	"color_scheme": "Mariana.sublime-color-scheme",
 	"theme": "auto",
+	"rulers" : [80, 120],
 }
