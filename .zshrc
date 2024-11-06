@@ -43,3 +43,10 @@ cd() {
 
 # Save every command to history before executing 
 setopt inc_append_history
+
+# Set up Ctrl-O to edit the current command
+bindkey "^O" "edit-command-line"
+autoload -z edit-command-line
+zle -N edit-command-line
+
+export EDITOR="subl -a -w"
