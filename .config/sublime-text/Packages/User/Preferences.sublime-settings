@@ -16,6 +16,7 @@
 	"neovintageous_build_version": 13200,
 	"vintageous_use_sys_clipboard": true,
 	"vintageous_use_ctrl_keys" : false,
+	"vintageous_use_super_keys" : false,
 	"vintageous_reset_mode_when_switching_tabs" : false,
 	"color_scheme": "Mariana.sublime-color-scheme",
 	"theme": "auto",
