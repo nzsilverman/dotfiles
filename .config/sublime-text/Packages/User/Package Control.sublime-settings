@@ -6,6 +6,7 @@
 		"Clang Format",
 		"CMake",
 		"Dockerfile Syntax Highlighting",
+		"FindKeyConflicts",
 		"Git blame",
 		"JSON Reindent",
 		"NeoVintageous",
