@@ -11,7 +11,7 @@ zstyle :prompt:pure:prompt:error color '#ff0000'
 zstyle :prompt:pure:path color '#c685ff' 
 
 # Add aliases
-alias v="vim"
+alias e="subl -a" # Open text editor of choice 
 alias refresh-zsh='source ~/.zshrc'
 alias gamend='git commit --amend --no-edit'
 alias gaddamend='git add . && git commit --amend --no-edit'
@@ -50,3 +50,7 @@ autoload -z edit-command-line
 zle -N edit-command-line
 
 export EDITOR="subl -a -w"
+
+# Do not close the shell on EOF signals (Ctrl+d)
+# If 10 are sent, the shell will be closed regardless
+setopt ignore_eof
