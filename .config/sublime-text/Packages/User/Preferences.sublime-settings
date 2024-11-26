@@ -1,8 +1,5 @@
 {
 	"font_size": 9,
-	// "ignored_packages": [
-	// ],
-	// "vintage_use_clipboard": true,
 	"trim_trailing_white_space_on_save": "all",
 	"ensure_newline_at_eof_on_save" : true,
 	"save_on_focus_lost": true,
@@ -14,7 +11,6 @@
 		"Vintage",
 	],
 	"neovintageous_build_version": 13200,
-	"vintageous_use_sys_clipboard": true,
 	"vintageous_use_ctrl_keys" : false,
 	"vintageous_use_super_keys" : false,
 	"vintageous_reset_mode_when_switching_tabs" : false,
