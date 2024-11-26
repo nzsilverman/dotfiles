@@ -44,8 +44,27 @@ cd() {
 # Save every command to history before executing 
 setopt inc_append_history
 
-# Set up Ctrl-O to edit the current command
-bindkey "^O" "edit-command-line"
+# Wrapper allows a custom editor to be called for only the edit-command-line
+edit_command_line_wrapper() {
+  # Save the current value of $EDITOR
+  local original_editor="$EDITOR"
+
+  # Set a new editor for this session (e.g., Sublime Text)
+  export EDITOR="subl -w -a"
+
+  # Call the original edit-command-line widget
+  zle edit-command-line
+
+  # Restore the original $EDITOR value after editing
+  export EDITOR="$original_editor"
+}
+zle -N edit_command_line_wrapper
+
+# Set up Ctrl-O to edit the current command with the wrapper
+# To use the native edit-command-line, replace edit_command_line_wrapper
+# with edit-command-line in the following line
+bindkey "^O" "edit_command_line_wrapper"
+# Load edit-command-line (zsh command) once
 autoload -z edit-command-line
 zle -N edit-command-line
 
