@@ -5,7 +5,7 @@ autoload -Uz compinit
 compinit
 
 # Add machine specific configurations
-source ~/.zshrc_local
+source $HOME/.zshrc_local
 
 # Use 'pure' zsh theme
 # https://github.com/sindresorhus/pure

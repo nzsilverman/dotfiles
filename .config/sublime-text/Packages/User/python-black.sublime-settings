@@ -1,3 +1,4 @@
 {
-  "format_on_save" : "off"
+  "format_on_save" : "on",
+  "line_length" : 120,
 }
