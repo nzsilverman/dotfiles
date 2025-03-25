@@ -1,5 +1,5 @@
 {
-	"font_size": 9,
+	"font_size": 10,
 	"trim_trailing_white_space_on_save": "all",
 	"ensure_newline_at_eof_on_save" : true,
 	"save_on_focus_lost": true,
