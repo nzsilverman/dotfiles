@@ -20,7 +20,7 @@ ssh-copy-id remote_username@server_ip_address                                   
 ssh-copy-id -i <identity_file>  remote_username@server_ip_address                                                                                                                   # Copy id to remote host, with a provided identity file
 ssh-copy-id -i <identity-file> -o ProxyJump=proxy@ip remote@ip                                                                                                                      # Copy id for entire proxy path so that you can jump right to the remote ip
 ssh-keygen -t rsa -b 4096 -C "your_email@domain.com"                                                                                                                                # Generate a new 4096 ssh keypair
-export DISPLAY=:0                                                                                                                                                                   # Use the local display, not the remote ssh display 
+export DISPLAY=:0                                                                                                                                                                   # Use the local display, not the remote ssh display
 
 # adb
 adb logcat | grep <tag>                                                                                                                                                             # see adb logs when device connected for debugging. search for tag
@@ -54,7 +54,7 @@ $$                                                                              
 $USER                                                                                                                                                                               # the username of the user running the script
 $HOSTNAME                                                                                                                                                                           # The hostname of the machine the script is running on
 $SECONDS                                                                                                                                                                            # num seconds since script was started
-$RANDOM                                                                                                                                                                             # returns a different random number each time 
+$RANDOM                                                                                                                                                                             # returns a different random number each time
 $LINENO                                                                                                                                                                             # returns the current line number in the script
 env                                                                                                                                                                                 # listing of other variables that can be reffered to
 cd $(dirname "$BASH_SOURCE") && pwd -P                                                                                                                                              # absolute path of sourced script
@@ -72,13 +72,13 @@ ncdu                                                                            
 
 # tmux
 ctrl+b "                                                                                                                                                                            # Split pane horizontally
-ctrl+b %                                                                                                                                                                            # Split pane vertically 
-ctrl+b x                                                                                                                                                                            # Close split pane 
+ctrl+b %                                                                                                                                                                            # Split pane vertically
+ctrl+b x                                                                                                                                                                            # Close split pane
 
 # miniterm
 ctrl-]                                                                                                                                                                              # Exit
 python3 -m serial.tools.miniterm --raw /dev/tty.usbserial-A107U3N3 115200                                                                                                           # Listen to a serial device. Change /dev/tty.usbserial-A107U3N3 to the correct device
- 
+
 
 # git
 git remote prune origin --dry-run                                                                                                                                                   # list branches that can be deleted/ pruned
@@ -122,14 +122,14 @@ iw <interface> info                                                             
 iw dev <interface> del                                                                                                                                                              # delete a wireless interface
 iw <interface> info                                                                                                                                                                 # show information (channel included) about interface
 
-# airmon-ng                                                                                                                                                                         
+# airmon-ng
 airmon-ng                                                                                                                                                                           # Show monitor status
-airmon-ng check                                                                                                                                                                     # Check for interfering processes  
+airmon-ng check                                                                                                                                                                     # Check for interfering processes
 airmon-ng check kill                                                                                                                                                                # stops network managers then kills interfering processes left
 airmon-ng start <wireless interface>                                                                                                                                                # Enable monitor mode. Note, it is very important to kill the network managers before putting a card in monitor mode
 airmon-ng stop <wireless monitor iface>                                                                                                                                             # Disable monitor mode. Will want to restart network manager after
 
-# NetworkManager                        
+# NetworkManager
 nmcli d                                                                                                                                                                             # show the status of devices known to NetworkManager
 nmcli d --help                                                                                                                                                                      # show more information for this option
 nmcli c                                                                                                                                                                             # show the current status of each of NetworkManagers connections
@@ -162,7 +162,7 @@ ip -s -s link ls <interface>                                                    
 ip link ls up                                                                                                                                                                       # See a list of only the running interfaces
 ip link set <interface> up                                                                                                                                                          # Bring a network interface up (online)
 ip link set <interface> down                                                                                                                                                        # Disable an interface (offline)
-ip link set txqueuelen <num> dev <iface>                                                                                                                                            # modify the transmit queue 
+ip link set txqueuelen <num> dev <iface>                                                                                                                                            # modify the transmit queue
 ip link set mtu <num> dev <iface>                                                                                                                                                   # set the MTU (maximum transmission unit)
 ip addr help                                                                                                                                                                        # view all options for ip address commands
 ip addr                                                                                                                                                                             # display all devices
@@ -190,13 +190,13 @@ ip route del <ip_addr> dev <iface>                                              
 ip neigh help                                                                                                                                                                       # display full list of neighbor commands
 ip neigh show                                                                                                                                                                       # display the neighbor (arp) table
 ip n show                                                                                                                                                                           # same as neighbor or neigh
-ip neigh add <ip_addr> dev <iface>                                                                                                                                                  # add a new table entry 
+ip neigh add <ip_addr> dev <iface>                                                                                                                                                  # add a new table entry
 ip neigh del <ip_addr> dev <iface>                                                                                                                                                  # remove an existing arp entry
 
-# tcpdump                               
+# tcpdump
 tcpdump -i <iface>                                                                                                                                                                  # list to all traffic on an interface. Supply `any` for all interfaces
 
-# Ghidra                                
+# Ghidra
 ghidraRun                                                                                                                                                                           # Start ghidra. This script is symlinked to /usr/local/bin
 <middle click>                                                                                                                                                                      # Highlight references to the word you clicked on
 ;                                                                                                                                                                                   # Insert comment
@@ -244,10 +244,10 @@ set layout asm                                                                  
 set layout reg                                                                                                                                                                      # show registers in tui (text user interface) mode
 <Enter>                                                                                                                                                                             # perform last command entered in gdb
 
-# dmesg                                 
+# dmesg
 dmesg -w                                                                                                                                                                            # Wait for new messages to be printed
 
-# grep                                  
+# grep
 grep -rl matchstring somedir/ | xargs sed -i 's/string1/string2/g'                                                                                                                  # replace string1 with string 2 in files that contain matchstring, ideally string1 == matchstring
 grep -rl matchstring somedir/ | xargs sed -i '' -e 's/string1/string2/g'                                                                                                            # On OSX: replace string1 with string 2 in files that contain matchstring, ideally string1 == matchstring, see https://stackoverflow.com/questions/19456518/error-when-using-sed-with-find-command-on-os-x-invalid-command-code
 rg -l matchstring somedir/ | xargs sed -i '' -e 's/string1/string2/g'                                                                                                               # On OSX: replace string1 with string 2 in files that contain matchstring, ideally string1 == matchstring, see https://stackoverflow.com/questions/19456518/error-when-using-sed-with-find-command-on-os-x-invalid-command-code. rg is often better at this than grep
@@ -274,7 +274,7 @@ tcpdump -i <iface>                                                              
 tcpdump -w <savefile.pcap>                                                                                                                                                          # save results to a pcap file
 tcpdump <expression>                                                                                                                                                                # bpf filter to apply to capture
 
-# pgrep                                 
+# pgrep
 pgrep python                                                                                                                                                                        # list pids for current python processes that are running. Sub "python" for any process of interest
 
 # lspci                                                                                                                                                                             # list all PCI Devices
@@ -326,10 +326,10 @@ Ctrl-r r                                                                        
 "+                                                                                                                                                                                  # Clipboard register
 :let @+=@%                                                                                                                                                                          # Copy the current filepath to the clipboard
 @:                                                                                                                                                                                  # Execute the most recently executed command again
-"=                                                                                                                                                                                  # Register used for the result of expressions 
+"=                                                                                                                                                                                  # Register used for the result of expressions
 Ctrl-r =                                                                                                                                                                            # in INSERT mode, used to evaluate expressions
 Ctrl-r = system('ls')                                                                                                                                                               # In INSERT mode, evaluate the system command ls
-"/                                                                                                                                                                                  # Search register, last text searched for with /, ?, *, or # 
+"/                                                                                                                                                                                  # Search register, last text searched for with /, ?, *, or #
 /Ctrl-r /                                                                                                                                                                           # Search for the last searched word/s
 "<m>                                                                                                                                                                                # Access the macro stored in register <m>
 q<letter><commands>q                                                                                                                                                                # Record a macro into <letter> register
@@ -373,7 +373,7 @@ y`a                                                                             
 `< or `>                                                                                                                                                                            # jump to beginnning/end of last visual selection
 :delmarks a                                                                                                                                                                         # delete mark a
 :delmarks a-d                                                                                                                                                                       # delete marks a, b, c, d
-:delmarks abxy                                                                                                                                                                      # delete marks a, b, x, y 
+:delmarks abxy                                                                                                                                                                      # delete marks a, b, x, y
 :delmarks aA                                                                                                                                                                        # delete marks a, A
 :delmarks!                                                                                                                                                                          # delete all lowercase marks for the current buffer
 :delm                                                                                                                                                                               # delete mark/s, sudodynm for :delmarks
@@ -386,7 +386,7 @@ Ctrl-b                                                                          
 :set colorcolumn=                                                                                                                                                                   # Turn off colorcolumn highlighting
 :set colorcolumn=80                                                                                                                                                                 # set colorcolumn (visual line of column mark) at 80
 :set colorcolumn=80,120                                                                                                                                                             # set colorcolumn (visual line of column mark) at 80 and 120
-:set spell spelllang=en_us                                                                                                                                                          # Turn on spell checking, with language set to United States english 
+:set spell spelllang=en_us                                                                                                                                                          # Turn on spell checking, with language set to United States english
 :set spell                                                                                                                                                                          # Turn on spell checking, using default language
 :set nospell                                                                                                                                                                        # Turn off spell checking
 ]s                                                                                                                                                                                  # Move to next misspelled word
@@ -417,22 +417,27 @@ u                                                                               
 :%s/foo/bar/gcI                                                                                                                                                                     # Find each occurence of foo (in all lines) and replace it with bar, case sensitive due to I, ask confirmation first
 Ctrl-a                                                                                                                                                                              # In normal mode, increment a number
 Ctrl-x                                                                                                                                                                              # In normal mode, decrement a number
-:w !sudo tee %                                                                                                                                                                      # Save a file with sudo permissions 
+:w !sudo tee %                                                                                                                                                                      # Save a file with sudo permissions
 set list                                                                                                                                                                            # Show whitespace as a character
 gn                                                                                                                                                                                  # Go to and highlight the last word searched for
 cgn                                                                                                                                                                                 # Go to and change the last word searched for
 :set ft?                                                                                                                                                                            # Display the filetype vim has set for a particular file
 kJ                                                                                                                                                                                  # Join the current line with the previous line
 ctrl+w v                                                                                                                                                                            # Vertical split vim window
-ctrl+w s                                                                                                                                                                            # Horizontal split vim window 
-:bd                                                                                                                                                                                 # Unload (close) a buffer. If it was changed, this fails unless a ! is provided 
-:ls                                                                                                                                                                                 # list currently open buffers 
+ctrl+w s                                                                                                                                                                            # Horizontal split vim window
+:bd                                                                                                                                                                                 # Unload (close) a buffer. If it was changed, this fails unless a ! is provided
+:ls                                                                                                                                                                                 # list currently open buffers
 :mks <filepath>                                                                                                                                                                     # Save a vim session (all the buffers opened) to a filepath. It is customary to name filepath with a .vim extension
-:source ~/path/to/vim/session.vim                                                                                                                                                   # Open a saved vim session 
-vim -S ~/path/to/vim/session.vim                                                                                                                                                    # Open a saved vim session on startup 
-ctrl+w T                                                                                                                                                                            # Move vim window to its own tab 
-ctrl+w =                                                                                                                                                                            # Recalculate vim window sizes 
+:source ~/path/to/vim/session.vim                                                                                                                                                   # Open a saved vim session
+vim -S ~/path/to/vim/session.vim                                                                                                                                                    # Open a saved vim session on startup
+ctrl+w T                                                                                                                                                                            # Move vim window to its own tab
+ctrl+w =                                                                                                                                                                            # Recalculate vim window sizes
 set filetype?                                                                                                                                                                       # Show the filetype of the current file in vim
 
 # rclone
-rclone dedupe "gdrive_nathan_logs:Flight logs" --dedupe-mode largest                                                                                                                                      # Deduplicate logs within the Flight logs folder, selecting the largest file when duplicates are found
+rclone dedupe "gdrive_nathan_logs:Flight logs" --dedupe-mode largest                                                                                                                # Deduplicate logs within the Flight logs folder, selecting the largest file when duplicates are found
+
+
+# Determine if wayland or xorg is being used
+loginctl show-session $(loginctl | grep $(whoami) | awk '{print $1}') -p Type                                                                                                       # Works overs ssh on xorg and wayland
+echo $XDG_SESSION_TYPE                                                                                                                                                              # Only works on xorg, and some wayland systems
