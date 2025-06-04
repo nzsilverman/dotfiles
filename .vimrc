@@ -33,7 +33,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'sainnhe/everforest'
 Plug 'sheerun/vim-polyglot'
-Plug 'ycm-core/YouCompleteMe'
+" Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'powerline/powerline-fonts'
@@ -189,26 +189,26 @@ colorscheme everforest
 "
 " Use homebrew's clangd. For this to work, you complete me must be installed
 " with --system-libclang
-let g:ycm_clangd_binary_path = trim(system('brew --prefix llvm')).'/bin/clangd'
+" let g:ycm_clangd_binary_path = trim(system('brew --prefix llvm')).'/bin/clangd'
 " Don't display ycm errors. They are annoying if completion is not setup
 " properly for a specific repository
-let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_show_diagnostics_ui = 0
 " Whitelist extra conf files
 " let g:ycm_extra_conf_globlist = ['/Users/nathansilverman/pyka/software/repos/*']
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_add_preview_to_completeopt = 0
+" let g:ycm_autoclose_preview_window_after_completion = 1
 " Don't hover automatically, only when leader-d is pressed
-let g:ycm_auto_hover = ''
-nmap <leader>d <plug>(YCMHover)
-nmap <Leader>fw <Plug>(YCMFindSymbolInWorkspace)
-nmap <Leader>fd <Plug>(YCMFindSymbolInDocument)
-augroup HighlightCppInHover
-  autocmd!
-  autocmd FileType c,cpp let b:ycm_hover = {
-    \ 'command': 'GetDoc',
-    \ 'syntax': &filetype
-    \ }
-augroup END
+" let g:ycm_auto_hover = ''
+" nmap <leader>d <plug>(YCMHover)
+" nmap <Leader>fw <Plug>(YCMFindSymbolInWorkspace)
+" nmap <Leader>fd <Plug>(YCMFindSymbolInDocument)
+" augroup HighlightCppInHover
+  " autocmd!
+  " autocmd FileType c,cpp let b:ycm_hover = {
+    " \ 'command': 'GetDoc',
+    " \ 'syntax': &filetype
+    " \ }
+" augroup END
 
 " Setup and configure vim airline
 "
