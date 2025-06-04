@@ -13,8 +13,8 @@ git config --global alias.ci commit
 git config --global alias.st status
 
 # Sublime as Default
-# git config --global core.editor "subl -a -w"
-git config --global  core.editor "code -a -w"
+git config --global core.editor "subl -a -w"
+# git config --global  core.editor "code -a -w"
 
 git config --global push.autoSetupRemote true
 git config --global push.default current
