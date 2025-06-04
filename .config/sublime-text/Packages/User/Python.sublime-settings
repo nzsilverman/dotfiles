@@ -1,4 +1,5 @@
 // These settings override both User and Default settings for the Python syntax
 {
-  "rulers": [80, 120]
+  "rulers": [80, 120],
+  "tab_size": 4,
 }
