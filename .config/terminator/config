@@ -16,7 +16,7 @@
     cursor_color = "#aaaaaa"
     foreground_color = "#839496"
     scrollback_infinite = True
-    palette = "#000000:#ff7800:#00ff00:#ffff00:#3584e4:#ff00ff:#00ffff:#ffffff:#000000:#ff7800:#00ff00:#ffff00:#3584e4:#ff00ff:#00ffff:#ffffff"
+    palette = "#77767b:#ff7800:#00ff00:#ffff00:#3584e4:#ff00ff:#00ffff:#ffffff:#77767b:#ff7800:#00ff00:#ffff00:#3584e4:#ff00ff:#00ffff:#ffffff"
 [layouts]
   [[default]]
     [[[window0]]]
