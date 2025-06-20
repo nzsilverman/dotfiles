@@ -31,6 +31,9 @@ alias grm-not-master='git checkout master | git branch | grep -v "master" | xarg
 alias grm-not-main='git checkout main | git branch | grep -v "main" | xargs git branch -D'
 alias greset-origin='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
 alias gupdate='git fetch && greset-origin && gsupdate && echo && gs'
+alias ghash-copy='git rev-parse HEAD | copy'
+alias copy='tee >(xclip -selection clipboard)'
+alias ghead='git log -1'
 
 # Load Git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
