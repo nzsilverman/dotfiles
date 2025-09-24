@@ -34,6 +34,7 @@ alias gupdate='git fetch && greset-origin && gsupdate && echo && gs'
 alias ghash-copy='git rev-parse HEAD | copy'
 alias copy='tee >(xclip -selection clipboard)'
 alias ghead='git log -1'
+alias cat='batcat'
 
 # Load Git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
@@ -81,3 +82,6 @@ export EDITOR="subl -a -w"
 setopt ignore_eof
 
 
+
+# add Pulumi to the PATH
+export PATH=$PATH:/home/nathan/.pulumi/bin

@@ -102,7 +102,8 @@ set completeopt=menu
 
 " Set git commit message rules
 autocmd FileType gitcommit set textwidth=72
-autocmd FileType gitcommit set colorcolumn=73
+autocmd FileType gitcommit set colorcolumn=50,72
+autocmd FileType gitcommit set spell
 
 " Show filename
 set laststatus=2
