@@ -20,7 +20,7 @@ echo -e 'Types: deb\nURIs: https://download.sublimetext.com/\nSuites: apt/stable
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
 
-sudo add-apt-repository -y ppa:deadsnakes/ppa 
+sudo add-apt-repository -y ppa:deadsnakes/ppa
 sudo add-apt-repository -y ppa:hluk/copyq
 
 echo -e "${GREEN}Finished setting up package manager access ${NC}"
@@ -84,7 +84,7 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
-gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-sage'
+gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-purple'
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru-sage'
 echo -e "${YELLOW}System settings updated just how you like!${NC}"
 
