@@ -40,7 +40,8 @@ alias cat='batcat'
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 
 # fzf setup
-source <(fzf --zsh)
+source ~/.fzf.zsh
+# source <(fzf --zsh)
 
 # Prevent cd from going to home directory when it is supplied no arguments
 cd() {
