@@ -50,12 +50,9 @@ echo -e "${GREEN}Finished installing useful system wide packages${NC}"
 
 echo -e "${YELLOW}Installing fzf${NC}"
 # Install fzf from source because the version in apt is outdated and does not
-echo -e "${YELLOW}Answer 'y' to enable fuzzy auto completion${NC}"
-echo -e "${YELLOW}Answer 'y' to enable key bindings${NC}"
-echo -e "${YELLOW}Answer 'n' to update shell config files${NC}"
 rm -rf ~/.fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --completion --key-bindings --no-update-rc
 echo -e "${GREEN}Installed fzf${NC}"
 
 echo -e "${YELLOW}Installing pip${NC}"
@@ -87,6 +84,8 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-sage'
+gsettings set org.gnome.desktop.interface icon-theme 'Yaru-sage'
 echo -e "${YELLOW}System settings updated just how you like!${NC}"
 
 echo -e "${YELLOW}Setting up git preferences${NC}"

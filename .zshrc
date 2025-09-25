@@ -1,11 +1,11 @@
+# Add machine specific configurations
+source ~/.zshrc_local
+
 # Set up ZSH Autocompletion Paths before anything else. Only call compinit ONCE
 fpath=(~/.zsh $fpath)
 fpath+=($HOME/.zsh/pure)
 autoload -Uz compinit
 compinit
-
-# Add machine specific configurations
-source $HOME/.zshrc_local
 
 # Use 'pure' zsh theme
 # https://github.com/sindresorhus/pure
