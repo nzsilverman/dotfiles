@@ -10,6 +10,7 @@
   move_tab_left = <Primary><Shift>Left
   next_tab = <Shift><Alt>Right
   prev_tab = <Shift><Alt>Left
+  full_screen = ""
 [profiles]
   [[default]]
     background_color = "#002b36"
