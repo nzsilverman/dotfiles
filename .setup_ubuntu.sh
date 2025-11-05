@@ -86,6 +86,9 @@ gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-purple'
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru-sage'
+# Disable emoji hotkeys to allow ctrl+. to work in vscode
+gsettings set org.freedesktop.ibus.panel.emoji hotkey "[]"
+gsettings set org.freedesktop.ibus.panel.emoji unicode-hotkey "[]"
 echo -e "${YELLOW}System settings updated just how you like!${NC}"
 
 echo -e "${YELLOW}Setting up git preferences${NC}"
