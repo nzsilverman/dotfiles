@@ -36,6 +36,12 @@ alias copy='tee >(xclip -selection clipboard)'
 alias ghead='git log -1'
 alias bat='batcat'
 
+# Make directory and change to it
+mc(){
+  mkdir -p "$1"
+  cd "$1"
+}
+
 # Load Git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 
