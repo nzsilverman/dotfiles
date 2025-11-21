@@ -37,7 +37,7 @@ alias ghead='git log -1'
 alias bat='batcat'
 
 # Make directory and change to it
-mc(){
+mcd(){
   mkdir -p "$1"
   cd "$1"
 }
