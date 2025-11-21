@@ -41,6 +41,8 @@ mcd(){
   mkdir -p "$1"
   cd "$1"
 }
+# Enable directory completion
+compdef _directories mcd
 
 # Load Git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
