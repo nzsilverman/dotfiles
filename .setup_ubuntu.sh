@@ -77,7 +77,7 @@ echo -e "${YELLOW}Adjusting system settings to your liking${NC}"
 gsettings set org.gnome.desktop.wm.keybindings switch-applications "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Control>Tab', '<Alt>Tab']"
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
-gsettings set org.gnome.desktop.peripherals.keyboard delay 300
+gsettings set org.gnome.desktop.peripherals.keyboard delay 200
 gsettings set org.gnome.desktop.wm.keybindings show-desktop "['']"
 gsettings set org.gnome.desktop.peripherals.touchpad click-method 'fingers'
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
