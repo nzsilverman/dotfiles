@@ -143,3 +143,6 @@ nmap <leader>t :bnext<CR>
 nmap <leader>T :bprevious<CR>
 
 autocmd FileType c,cpp,java,Jenkinsfile set commentstring=//\ %s
+
+" Reset colorscheme for git commit messages
+autocmd FileType gitcommit colorscheme default | hi Normal ctermbg=NONE guibg=NONE

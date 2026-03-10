@@ -31,10 +31,11 @@ alias grm-not-master='git checkout master | git branch | grep -v "master" | xarg
 alias grm-not-main='git checkout main | git branch | grep -v "main" | xargs git branch -D'
 alias greset-origin='git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
 alias gupdate='git fetch && greset-origin && gsupdate && echo && gs'
-alias ghash-copy='git rev-parse HEAD | copy'
+alias ghash-copy='git rev-parse HEAD | tr -d "\n" | copy'
 alias copy='tee >(xclip -selection clipboard)'
 alias ghead='git log -1'
 alias bat='batcat'
+alias fetch='git fetch && git fetch --tags'
 
 # Make directory and change to it
 mcd(){
@@ -94,3 +95,7 @@ setopt ignore_eof
 
 # add Pulumi to the PATH
 export PATH=$PATH:/home/nathan/.pulumi/bin
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
