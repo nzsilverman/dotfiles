@@ -1,5 +1,5 @@
 {
   "style": "File",
   "format_on_save": true,
-  "binary" : "clang-format-15",
+  "binary" : "clang-format",
 }
