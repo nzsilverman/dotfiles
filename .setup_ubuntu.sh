@@ -38,6 +38,7 @@ sudo apt install -y \
   python3.11-full \
   python3.12-full \
   python3.13-full \
+  python3-pip \
   compizconfig-settings-manager \
   chrome-gnome-shell \
   sublime-text \
@@ -54,12 +55,6 @@ rm -rf ~/.fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --completion --key-bindings --no-update-rc
 echo -e "${GREEN}Installed fzf${NC}"
-
-echo -e "${YELLOW}Installing pip${NC}"
-curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
-curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
-curl -sS https://bootstrap.pypa.io/get-pip.py | python3.13
-echo -e "${GREEN}Pip installed${NC}"
 
 echo -e "${YELLOW}Setting up shell. This will ask for your password!${NC}"
 # If a ~/.zshrc_local file exists, it will not be overwritten
